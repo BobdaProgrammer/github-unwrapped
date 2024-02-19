@@ -1,5 +1,5 @@
 body{
-    background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(../make-a-background-image-for-my-website-it-has-to-upscaled.png);
+    background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(./make-a-background-image-for-my-website-it-has-to-upscaled.png);
     background-size: cover;
 }
 .tile{
