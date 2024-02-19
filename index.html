@@ -12,6 +12,10 @@
     <input contenteditable="true" type="text" id="username">
     <a href="/stats/main.html" id="a"><button onclick="selectAccount()" class="next">next</button></a>
     </div>
-    <script src="index.js"></script>
+    <script>
+        function selectAccount(){
+            document.getElementById("a").href = "./stats/main.html?username="+document.getElementById("username").value;
+        }
+    </script>
 </body>
 </html>
