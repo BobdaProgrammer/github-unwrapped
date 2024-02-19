@@ -1,0 +1,87 @@
+body{
+    background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(make-a-background-image-for-my-website-it-has-to-upscaled.png);
+    background-size: cover;
+}
+.tile{
+    width: 50em;
+    height: 80vh;
+    background-color: #2C2A4A;
+    border-radius: 50px;
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%,-50%);
+    text-align: center;
+    align-content: center;
+    padding-top: 40px;
+}
+.board{
+    border: 2px solid black;
+    border-radius: 5px;
+    width: 40%;
+    margin: auto;
+    margin-bottom: 5px;
+}
+.circle{
+    background-color: #7FDEFF;
+    border-radius: 100%;
+    width: 20%;
+    height: 30%;
+    text-align: center;
+    padding-top: 30px;
+    font-size: 550%;
+    margin: auto;
+    margin-bottom: 20px;
+}
+.starred{
+    border: 2px solid black;
+    border-radius: 5px;
+    width: 40%;
+    margin: auto;
+    max-height: 30%;
+    min-height: 30%;
+    overflow-y: auto;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+.pl{
+    color: #E43F6F;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    display: flex;
+    min-height: 50px;
+    border: 2px solid black;
+}
+.pls{
+    color: #E43F6F;
+    font-size: 200%;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    min-height: 50px;
+    border: 2px solid black;  
+}
+.languagetitle{
+    color: #F56476;
+}
+.next{
+    background-color: #DABFFF;
+    color:#4F518C;
+    border-radius: 5px;
+    margin-top: 10px;
+    outline: none;
+    border: none;
+}
+.box{
+    border-right: 4px solid black;
+    display: flexbox;
+    width: 10%;
+    height: 100%;
+    text-align: center;
+    font-size: 45px;
+}
+.name{
+    color: #F56476;
+ display: flexbox;
+ font-size: 300%;
+}
