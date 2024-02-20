@@ -56,11 +56,11 @@ function final() {
   document.getElementById("contribname").innerHTML = results["NOC"];
 }
 function summaryof() {
-  document.body.innerHTML = `    <div class="tile">
+  document.body.innerHTML = `
         <div class="languagetitle">Your summary:</div>
         <p style="color: #BE3E82; font-size: 40px;">${summary}</p>
-    </div>
     <script src="main.js"></script>`;
+  document.body.style = "background-color: #2C2A4A; text-align: center;";
 }
 async function getContributions() {
   const headers = {
@@ -241,16 +241,28 @@ document.addEventListener("DOMContentLoaded", function () {
       results["TOC"] = topThreeHours;
       results["DOC"] = sortedDays.slice(0, 3).map((day) => day[0]);
       console.log(results);
+      starred = starred.slice(0,3)
       summary = `Your most used languages are ${
-        results["MUL"]
-      }, your most recent starred repositories are ${starred.slice(
-        0,
-        3
-      )}, your most productive hours are ${
-        results["TOC"]
-      }, your most productive days are ${results["DOC"]}, you have ${
-        results["PRM"]
-      } pull requests merged and you have ${
+        results["MUL"][0] +
+        ", " +
+        results["MUL"][1] +
+        " and " +
+        results["MUL"][2]
+      }, your most recent starred repositories are ${
+        starred[0] + ", " + starred[1] + " and " + starred[2]
+      }, your most productive hours are ${
+        results["TOC"][0] +
+        ", " +
+        results["TOC"][1] +
+        " and " +
+        results["TOC"][2]
+      }, your most productive days are ${
+        results["DOC"][0] +
+        ", " +
+        results["DOC"][1] +
+        " and " +
+        results["DOC"][2]
+      }, you have ${results["PRM"]} pull requests merged and you have ${
         results["NOC"]
       } total contributions`;
       document.getElementById("first").children[1].innerHTML =
