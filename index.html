@@ -16,6 +16,30 @@
         function selectAccount(){
             document.getElementById("a").href = "./stats/main.html?username="+document.getElementById("username").value;
         }
+        
+    function signInWithGitHub() {
+      const clientId = "139eb2ebea29ce71494d";
+      const redirectUri = "githubunwrapped.softwarespot.top";
+      const scope = "user"; // Specify the scopes you need
+
+      const authUrl = `https://github.com/login/oauth/authorize?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scope}`;
+      window.location.href = authUrl;
+}
+    
+    function handleCallback() {
+      const accessToken = window.location.hash
+        .substring(1)
+        .split("&")[0]
+        .split("=")[1];
+
+      // Use the access token to make authenticated requests or store it securely
+      console.log("Access Token:", accessToken);
+    }
+
+    // Check if the URL contains an access token after redirection
+    if (window.location.hash.includes("access_token")) {
+      handleCallback();
+    }
     </script>
 </body>
 </html>
