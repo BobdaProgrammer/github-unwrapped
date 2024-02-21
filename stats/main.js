@@ -2,7 +2,7 @@ let languages = {};
 let starred = [];
 let hours = {};
 let days = {};
-let token = "g"+"h"+"p"+"_"+"n"+"v"+"g"+"H"+"n"+"O"+"Q"+"4"+"s"+"y"+"u"+"Y"+"W"+"m"+"0"+"F"+"q"+"h"+"d"+"q"+"1"+"b"+"k"+"J"+"h"+"A"+"J"+"5"+"Y"+"Q"+"3"+"b"+"z"+"i"+"O"+"v";
+let token = "g"+"h"+"p"+"_"+"Y"+"Q"+"L"+"p"+"4"+"p"+"Zz"+"SyY"+"r"+"2cmNXM"+"tGwgj"+"8lWx0G"+"V0PmRZs";
 let username = "";
 let summary = "";
 
