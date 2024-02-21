@@ -255,7 +255,7 @@ document.addEventListener("DOMContentLoaded", function () {
       results["TOC"] = topThreeHours;
       results["DOC"] = sortedDays.slice(0, 3).map((day) => day[0]);
       console.log(results);
-      starred = starred.slice(0,3)
+      let starredSummary = starred.slice(0,3)
       summary = `Your most used languages are ${
         results["MUL"][0] +
         ", " +
@@ -263,7 +263,7 @@ document.addEventListener("DOMContentLoaded", function () {
         " and " +
         results["MUL"][2]
       }, your most recent starred repositories are ${
-        starred[0] + ", " + starred[1] + " and " + starred[2]
+        starredSummary[0] + ", " + starredSummary[1] + " and " + starredSummary[2]
       }, your most productive hours are ${
         results["TOC"][0] +
         ", " +
