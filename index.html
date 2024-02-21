@@ -10,12 +10,9 @@
     <div class="tile">
         <span>Get your github unwrapped</span>
     <input contenteditable="true" type="text" id="username">
-    <a href="/stats/main.html" id="a"><button onclick="selectAccount()" class="next">next</button></a>
+    <button onclick="signInWithGithub()" class="next">Authorize with github</button>
     </div>
     <script>
-        function selectAccount(){
-            document.getElementById("a").href = "./stats/main.html?username="+document.getElementById("username").value;
-        }
         
     function signInWithGitHub() {
       const clientId = "139eb2ebea29ce71494d";
