@@ -13,7 +13,7 @@
     <button onclick="signInWithGitHub()" class="next">Authorize with github</button>
     </div>
     <script>
-        
+        const urlParams = new URLSearchParams(window.location.search);
     function signInWithGitHub() {
       const clientId = "139eb2ebea29ce71494d";
       const redirectUri = "https://githubunwrapped.softwarespot.top";
@@ -24,16 +24,15 @@
 }
     
     function handleCallback() {
-        const urlParams = new URLSearchParams(window.location.search);
         accessToken = urlParams.get("code");
 
       // Use the access token to make authenticated requests or store it securely
       console.log("Access Token:", accessToken);
     }
 
-
+    
     // Check if the URL contains an access token after redirection
-    if (window.location.hash.includes("code")) {
+    if (urlParams.get("code")!=null) {
       handleCallback();
     }
     </script>
