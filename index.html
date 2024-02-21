@@ -24,17 +24,16 @@
 }
     
     function handleCallback() {
-      const accessToken = window.location.hash
-        .substring(1)
-        .split("&")[0]
-        .split("=")[1];
+        const urlParams = new URLSearchParams(window.location.search);
+        accessToken = urlParams.get("code");
 
       // Use the access token to make authenticated requests or store it securely
       console.log("Access Token:", accessToken);
     }
 
+
     // Check if the URL contains an access token after redirection
-    if (window.location.hash.includes("access_token")) {
+    if (window.location.hash.includes("code")) {
       handleCallback();
     }
     </script>
