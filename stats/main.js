@@ -2,7 +2,8 @@ let languages = {};
 let starred = [];
 let hours = {};
 let days = {};
-let token = "g"+"h"+"p"+"_"+"Y"+"Q"+"L"+"p"+"4"+"p"+"Zz"+"SyY"+"r"+"2cmNXM"+"tGwgj"+"8lWx0G"+"V0PmRZs";
+const urlParams = new URLSearchParams(window.location.search);
+let token = urlParams.get("token");
 let username = "";
 let summary = "";
 
@@ -192,7 +193,20 @@ function getHourAndDay(link) {
 }
 document.addEventListener("DOMContentLoaded", function () {
   const urlParams = new URLSearchParams(window.location.search);
-  username = urlParams.get("username");
+  let username;
+  fetch("https://api.github.com/user",{
+   headers:{
+      Authorization: `bearer ${token}`,
+   },
+  })
+  .then(response => response.json())
+  .then(data => {
+    // Extract the username from the response data
+    username = data.login; // 'login' is the key for the username in the GitHub API response
+  })
+  .catch(error => {
+    console.error('Error fetching user info:', error);
+  });
   fetch("https://api.github.com/users/" + username + "/repos", {
     headers: {
       Authorization: `bearer ${token}`,
