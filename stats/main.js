@@ -201,6 +201,7 @@ document.addEventListener("DOMContentLoaded", function () {
   })
   .then(response => response.json())
   .then(data => {
+    console.log(data.login);
     // Extract the username from the response data
     username = data.login; // 'login' is the key for the username in the GitHub API response
   })
