@@ -193,6 +193,16 @@ function getHourAndDay(link) {
 }
 document.addEventListener("DOMContentLoaded", function () {
   const urlParams = new URLSearchParams(window.location.search);
+  fetch(`https://github.com/login/oauth/access_token`,{
+    Method:"POST",
+    headers:{
+      Authorization: `Bearer ${token}`
+    }
+  }).then(response => response.json())
+  .then(data=>{
+    console.log(data)
+    token = data.access_token
+  })
   let username;
   fetch("https://api.github.com/user",{
    headers:{
