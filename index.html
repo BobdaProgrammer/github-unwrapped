@@ -10,30 +10,12 @@
     <div class="tile">
         <span>Get your github unwrapped</span>
     <input contenteditable="true" type="text" id="username">
-    <button onclick="signInWithGitHub()" class="next">Authorize with github</button>
+    <a href="./stats/main.html" id="a"><button onclick="selectAcc()" class="next">next</button></a>
     </div>
     <script>
-        const urlParams = new URLSearchParams(window.location.search);
-    function signInWithGitHub() {
-      const clientId = "139eb2ebea29ce71494d";
-      const redirectUri = "https://githubunwrapped.softwarespot.top";
-      const scope = "user:read,repo"; // Specify the scopes you need
-
-      const authUrl = `https://github.com/login/oauth/authorize?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scope}`;
-      window.location.href = authUrl;
-}
-    
-    function handleCallback() {
-        accessToken = urlParams.get("code");
-
-        window.location.href = `https://githubunwrapped.softwarespot.top/stats/main.html?token=${accessToken}`
-    }
-
-    
-    // Check if the URL contains an access token after redirection
-    if (urlParams.get("code")!=null) {
-      handleCallback();
-    }
+           function selectAcc(){
+                 document.getElementById("a").href = "./stats/main.html?username="+document.getElementById("username").value  
+           }
     </script>
 </body>
 </html>
