@@ -1,10 +1,3 @@
-let languages = {};
-let starred = [];
-let hours = {};
-let days = {};
-const urlParams = new URLSearchParams(window.location.search);
-let token = urlParams.get("token");
-let username = "";
 let summary = "";
 
 let results = {
@@ -63,167 +56,9 @@ function summaryof() {
     <script src="main.js"></script>`;
   document.body.style = "background-color: #2C2A4A; text-align: center;";
 }
-async function getContributions() {
-  const headers = {
-    Authorization: `bearer ${token}`,
-  };
-  const body = {
-    query:
-      "query {viewer {contributionsCollection {contributionCalendar {totalContributions}}}}",
-  };
-  const response = await fetch("https://api.github.com/graphql", {
-    method: "POST",
-    body: JSON.stringify(body),
-    headers: headers,
-  });
-  const data = await response.json();
-  results["NOC"] =
-    data.data.viewer.contributionsCollection.contributionCalendar.totalContributions;
-  return data;
-}
-function fetchMerged(link) {
-  return fetch(link, {
-    headers: {
-      Authorization: `bearer ${token}`,
-    },
-  })
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error(
-          `Network response was not ok, status: ${response.status}`
-        );
-      }
-
-      return response.json();
-    })
-    .then((data) => {
-      results["PRM"] = data["total_count"];
-    })
-    .catch((error) => {
-      console.log("Fetch error: ", error);
-    });
-}
-function fetchlanguage(link) {
-  return fetch(link, {
-    headers: {
-      Authorization: `bearer ${token}`,
-    },
-  })
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error(
-          `Network response was not ok, status: ${response.status}`
-        );
-      }
-
-      return response.json();
-    })
-    .then((data) => {
-      for (let key in data) {
-        languages[key]
-          ? (languages[key] += data[key])
-          : (languages[key] = data[key]);
-      }
-    })
-    .catch((error) => {
-      console.log("Fetch error: ", error);
-    });
-}
-function fetchStarred(link) {
-  return fetch(link, {
-    headers: {
-      Authorization: `bearer ${token}`,
-    },
-  })
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error(
-          `Network response was not ok, status: ${response.status}`
-        );
-      }
-
-      return response.json();
-    })
-    .then((data) => {
-      for (let key in data) {
-        starred.push(data[key]["name"]);
-      }
-    })
-    .catch((error) => {
-      console.log("Fetch error: ", error);
-    });
-}
-function getHourAndDay(link) {
-  link = link.slice(0, link.length - 6);
-  return fetch(link, {
-    headers: {
-      Authorization: `bearer ${token}`,
-    },
-  })
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error(
-          `Network response was not ok, status: ${response.status}`
-        );
-      }
-
-      return response.json();
-    })
-    .then((data) => {
-      let daysOfWeek = [
-        "Sunday",
-        "Monday",
-        "Tuesday",
-        "wednesday",
-        "Thursday",
-        "Friday",
-        "Saturday",
-      ];
-      for (let key in data) {
-        let date = new Date(data[key]["commit"]["committer"]["date"]);
-        let hour = JSON.stringify(date.getHours()) + "T";
-        let day = daysOfWeek[date.getDay()];
-        hours[hour] ? (hours[hour] += 1) : (hours[hour] = 1);
-        days[day] ? (days[day] += 1) : (days[day] = 1);
-      }
-    })
-    .catch((error) => {
-      console.log("Fetch error: ", error);
-    });
-}
 document.addEventListener("DOMContentLoaded", function () {
-  const urlParams = new URLSearchParams(window.location.search);
-  fetch(`https://github.com/login/oauth/access_token`,{
-    Method:"POST",
-    headers:{
-      Authorization: `Bearer ${token}`
-    }
-  }).then(response => response.json())
-  .then(data=>{
-    console.log(data)
-    token = data.access_token
-  })
-  let username;
-  fetch("https://api.github.com/user",{
-   headers:{
-      Authorization: `bearer ${token}`,
-   },
-  })
-  .then(response => response.json())
-  .then(data => {
-    console.log(data.login);
-    // Extract the username from the response data
-    username = data.login; // 'login' is the key for the username in the GitHub API response
-  })
-  .catch(error => {
-    console.error('Error fetching user info:', error);
-  });
-  fetch("https://api.github.com/users/" + username + "/repos", {
-    headers: {
-      Authorization: `bearer ${token}`,
-    },
-  })
-    .then((response) => {
+      fetch("https://dull-plum-dragonfly-coat.cyclic.app/?username="+username)
+              .then((response) => {
       if (!response.ok) {
         throw new Error(
           `Network response was not ok, status: ${response.status}`
@@ -231,38 +66,19 @@ document.addEventListener("DOMContentLoaded", function () {
       }
 
       return response.json();
-    })
-    .then((data) => {
-      let promises = [];
-      for (let repo in data) {
-        promises.push(fetchlanguage(data[repo]["languages_url"]));
-        promises.push(getHourAndDay(data[repo]["commits_url"]));
-      }
-      promises.push(getContributions());
-      promises.push(
-        fetchMerged(
-          `https://api.github.com/search/issues?q=is:pr+author:${username}+is:merged`
-        )
-      );
-      promises.push(
-        fetchStarred(`https://api.github.com/users/${username}/starred`)
-      );
-      return Promise.all(promises);
-    })
-    .then(() => {
-      let sortedLanguages = Object.entries(languages).sort(
-        (a, b) => b[1] - a[1]
-      );
-      let sortedHours = Object.entries(hours).sort((a, b) => b[1] - a[1]);
-      let sortedDays = Object.entries(days).sort((a, b) => b[1] - a[1]);
-      let topThreeLanguages = sortedLanguages
+    }) .then((data)=>{
+      languages = data.MUL
+      results["PRM"] = data.PRM
+      results["NOC"] = data.NOC
+      let sortedHours = data.TOC
+      let sortedDays = data.DOC
+      let topThreeLanguages = languages
         .slice(0, 3)
-        .map((language) => language[0]);
       let topThreeHours = sortedHours
         .slice(0, 3)
-        .map((time) => time[0].replace("T", "") + ":00");
       results["MUL"] = topThreeLanguages;
-      results["RS"] = starred;
+      let starred = data.RS
+      results["RS"] = starred
       results["TOC"] = topThreeHours;
       results["DOC"] = sortedDays.slice(0, 3).map((day) => day[0]);
       console.log(results);
@@ -300,9 +116,6 @@ document.addEventListener("DOMContentLoaded", function () {
         let div = document.createElement("div");
         div.innerHTML = `<div class="pls">${starred[i]}</div>`;
         document.getElementById("starred").appendChild(div);
-      }
+      }      
     })
-    .catch((error) => {
-      console.log("Fetch error: ", error);
-    });
 });
