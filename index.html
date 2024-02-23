@@ -17,7 +17,7 @@
     function signInWithGitHub() {
       const clientId = "139eb2ebea29ce71494d";
       const redirectUri = "https://githubunwrapped.softwarespot.top";
-      const scope = "user"; // Specify the scopes you need
+      const scope = "user:read,repo"; // Specify the scopes you need
 
       const authUrl = `https://github.com/login/oauth/authorize?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scope}`;
       window.location.href = authUrl;
