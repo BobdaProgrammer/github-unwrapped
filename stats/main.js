@@ -58,7 +58,7 @@ function summaryof() {
 }
 document.addEventListener("DOMContentLoaded", function () {
       const urlParams = new URLSearchParams(window.location.search);
-      let username = urlParams.Get("username")
+      let username = urlParams.get("username")
       fetch("https://dull-plum-dragonfly-coat.cyclic.app/?username="+username)
               .then((response) => {
       if (!response.ok) {
