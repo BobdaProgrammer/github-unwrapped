@@ -57,6 +57,8 @@ function summaryof() {
   document.body.style = "background-color: #2C2A4A; text-align: center;";
 }
 document.addEventListener("DOMContentLoaded", function () {
+      const urlParams = new URLSearchParams(window.location.search);
+      let username = urlParams.Get("useername")
       fetch("https://dull-plum-dragonfly-coat.cyclic.app/?username="+username)
               .then((response) => {
       if (!response.ok) {
