@@ -59,7 +59,9 @@ function summaryof() {
 document.addEventListener("DOMContentLoaded", function () {
       const urlParams = new URLSearchParams(window.location.search);
       let username = urlParams.get("username")
-      fetch("https://dull-plum-dragonfly-coat.cyclic.app/?username="+username)
+      fetch("https://dull-plum-dragonfly-coat.cyclic.app/?username="+username,{
+       mode:'no-cors' 
+      })
               .then((response) => {
       if (!response.ok) {
         throw new Error(
