@@ -60,7 +60,7 @@ document.addEventListener("DOMContentLoaded", function () {
       const urlParams = new URLSearchParams(window.location.search);
       let username = urlParams.get("username")
       fetch("https://dull-plum-dragonfly-coat.cyclic.app/?username="+username,{
-       mode:'no-cors' 
+       method:"GET"
       })
               .then((response) => {
       if (!response.ok) {
