@@ -10,20 +10,34 @@ let results = {
 };
 //MUL = most used languages, RS = repo's starred, TOC = most common hours of commits(time of commits), Day of commits (most common days of commits), PRM = pull requests merged, NOC = number of contributions
 //displaying the data
+function showmore(dataType, id) {
+    let obj = document.getElementById(id);
+    let othlangs = results[dataType].slice(3, results[dataType].length);
+    for (let i = 0; i < othlangs.length; i++) {
+      let box = document.createElement("div");
+      box.classList = "pl";
+      box.innerHTML = `<div class="box">${i + 4}</div><div class="name">${
+        othlangs[i]
+      }</div>`;
+      obj.appendChild(box);
+    }
+}
 function productive() {
   document.body.innerHTML = `    <div class="tile">
         <div class="languagetitle">Your most productive days</div>
-        <div class="board">
+        <div class="board" id="daysboard">
         <div class="pl" id="first"><div class="box">1</div><div class="name"></div></div>
         <div class="pl" id="second"><div class="box">2</div><div class="name"></div></div>
         <div class="pl" id="third"><div class="box">3</div><div class="name"></div></div>
         </div>
+        <div class="seemore"><button class="next" onclick="showmore('DOC','daysboard');">See more</button></div>
         <div class="languagetitle">Your most productive hours</div>
-        <div class="board">
+        <div class="board" id="hoursboard">
         <div class="pl" id="first1"><div class="box">1</div><div class="name"></div></div>
         <div class="pl" id="second1"><div class="box">2</div><div class="name"></div></div>
         <div class="pl" id="third1"><div class="box">3</div><div class="name"></div></div>
         </div>
+        <div class="seemore"><button class="next" onclick="showmore('TOC','hoursboard');">See more</button></div>
         <button onclick="final();" class="next">next ⮕</button>
     </div>
     <script src="main.js"></script>`;
@@ -76,15 +90,11 @@ document.addEventListener("DOMContentLoaded", function () {
       results["NOC"] = data.NOC
       let sortedHours = data.TOC
       let sortedDays = data.DOC
-      let topThreeLanguages = languages
-        .slice(0, 3)
-      let topThreeHours = sortedHours
-        .slice(0, 3)
-      results["MUL"] = topThreeLanguages;
+      results["MUL"] = languages;
       let starred = data.RS
       results["RS"] = starred
-      results["TOC"] = topThreeHours;
-      results["DOC"] = sortedDays.slice(0, 3).map((day) => day[0]);
+      results["TOC"] = sortedHours;
+      results["DOC"] = sortedDays.map((day) => day[0]);
       console.log(results);
       let starredSummary = starred.slice(0,3)
       summary = `Your most used languages are ${
@@ -111,11 +121,11 @@ document.addEventListener("DOMContentLoaded", function () {
         results["NOC"]
       } total contributions`;
       document.getElementById("first").children[1].innerHTML =
-        topThreeLanguages[0];
+        results["MUL"][0];
       document.getElementById("second").children[1].innerHTML =
-        topThreeLanguages[1];
+        results["MUL"][1];
       document.getElementById("third").children[1].innerHTML =
-        topThreeLanguages[2];
+        results["MUL"][2];
       for (let i = 0; i < starred.length; i++) {
         let div = document.createElement("div");
         div.innerHTML = `<div class="pls">${starred[i]}</div>`;

@@ -4,7 +4,7 @@ body{
 }
 .tile{
     width: 50em;
-    height: 80vh;
+    height: 85vh;
     background-color: #2C2A4A;
     border-radius: 50px;
     top: 50%;
@@ -13,13 +13,15 @@ body{
     transform: translate(-50%,-50%);
     text-align: center;
     align-content: center;
-    padding-top: 40px;
+    padding-top: 0px;
 }
 .board{
     border: 2px solid black;
     border-radius: 5px;
     width: 40%;
     margin: auto;
+    overflow-y: auto;
+    max-height: 41%;
     margin-bottom: 5px;
 }
 .circle{
@@ -67,14 +69,14 @@ body{
     background-color: #DABFFF;
     color:#4F518C;
     border-radius: 5px;
-    margin-top: 10px;
+    margin-top: 1px;
     outline: none;
     border: none;
 }
 .box{
     border-right: 4px solid black;
     display: flexbox;
-    width: 10%;
+    width: 20%;
     height: 100%;
     text-align: center;
     font-size: 45px;
